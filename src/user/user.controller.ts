@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards,HttpCode,HttpStatus } from '@nestjs/common';
+import { Controller, Get, UseGuards,HttpCode,HttpStatus, Patch } from '@nestjs/common';
 
 import { JwtGuard } from '../auth/guard';
 import { GetUser } from '../auth/decorator';
@@ -11,6 +11,10 @@ export class UserController {
       @Get()
       async getMe(@GetUser() user :User) {
             return user
+            
+      }
+      @Patch()
+      async editMe(){
             
       }
       

@@ -26,8 +26,10 @@ import { AppModule } from "../src/app.module"
 import { Test } from "@nestjs/testing"
 import { INestApplication } from "@nestjs/common/interfaces"
 import { ValidationPipe } from "@nestjs/common/pipes/validation.pipe"
+
 describe('APP e2e', () => { 
   let app:INestApplication
+
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports:[AppModule]
@@ -37,9 +39,25 @@ describe('APP e2e', () => {
     whitelist:true
     }))
     await app.init()
+   
   })
   afterAll(() => {
     app.close()
   })
-  it.todo("should pass")
+  // it.todo("should pass")
+  describe("Auth",()=>{
+    describe("signup",()=>{
+    
+    })
+    describe("login",()=>{
+    
+    })
+
+  })
+  describe("User",()=>{
+    
+  })
+  describe("Bookmarks",()=>{
+    
+  })
  })
