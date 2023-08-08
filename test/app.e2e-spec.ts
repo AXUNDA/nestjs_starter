@@ -101,6 +101,15 @@ describe('APP e2e', () => {
   })
   describe("Bookmarks",()=>{
     describe("Create bookmark",()=>{
+      it("should create a bookmark",()=>{
+        return pactum.spec().post("/bookmark").withHeaders({Authorization:"Bearer $S{userAt}"}).withBody({
+          title:"bookmark title",
+          desc:"bookmark desc",
+          link:"bookmark link"
+
+        }).expectStatus(201).inspect()
+
+      })
     
     })
     describe("Edit bookmark by id",()=>{

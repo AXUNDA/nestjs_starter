@@ -1,7 +1,8 @@
-import { Controller,Get,Post,Patch,Put,Delete, UseGuards,Param, ParseIntPipe } from '@nestjs/common';
+import { Controller,Get,Post,Patch,Put,Delete, UseGuards,Param, ParseIntPipe,Body,HttpCode,HttpStatus } from '@nestjs/common';
 import { BookmarkService } from './bookmark.service';
-import { JwtGuard } from 'src/auth/guard';
-import { GetUser } from 'src/auth/decorator';
+import { JwtGuard } from '../auth/guard';
+import { GetUser } from '../auth/decorator/getUser.decorator';
+import { bookmarkDto } from './dto';
 
 @UseGuards(JwtGuard)
 @Controller('bookmark')
@@ -12,9 +13,11 @@ export class BookmarkController {
     getBookmarks(@GetUser("id") userId :number){
 
     }
-
+     @HttpCode(HttpStatus.CREATED)
     @Post()
-    createBookmark(@GetUser("id") userId :number){
+    async createBookmark(@GetUser("id") userId :number,@Body() dto :bookmarkDto){
+        return await this.service.createBookmark(userId,dto)
+
 
     }
 
